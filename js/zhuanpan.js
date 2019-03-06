@@ -1,3 +1,4 @@
+//JS 参考：http://www.17sucai.com/pins/demo-show?id=9496
 $(function (){
 	
 	var bRotate = false;
