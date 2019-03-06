@@ -1,3 +1,3 @@
 # ChouJiang
 
-[转盘](http://alvinwp.com/demo/zhuanpan/zhuanpan.html)
+[转盘/抽奖](https://alvinyw.github.io/Blog/ChouJiang/zhuanpan.html)
