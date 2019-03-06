@@ -2,189 +2,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>幸运大转盘</title>
+<title>基层党建大转盘</title>
 <style type="text/css">
 body { font-size: 12px; /*background: #920903;*/ background-color: #ddd; }
 * { margin: 0; padding: 0; }
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 img { border: 0 }
-#mian { }
-#content { display:inline-block; width: 100%; max-width: 950px; max-height: 950px; margin:20px; position: relative; overflow: hidden; }
+#content { display: inline-block; width: 100%; max-width: 950px; max-height: 950px; margin: 20px 20px 0; position: relative; overflow: hidden; }
 #zhuanpan { display: block; max-width: 100%; height: auto; }
-#tip { position: absolute; left: 50%; top: 50%; width: 12.9%; height: 19.7%; margin: -13.05% 0 0 -6.6%; cursor: pointer; }
-
-#result { display:inline-block; margin:20px; vertical-align:top;}
-#result .item { border:1px solid #aaa; border-radius:4px; padding:10px 20px; margin-bottom:20px; min-width:300px; background:#fff;}
-#result .item p { margin-bottom:15px; font-size:16px; line-height:26px; color:#444;}
-#result .item p:nth-child(2n) { margin-bottom:5px;}
-#result .item p:last-child { margin-bottom:0;}
-#result .item p .jz { font-size:20px; font-weight:bold; color:#000;}
-#result .item p .cz, #result .item p .sq { font-weight:bold; color:#000;}
-#result .item a.btn { display:inline-block; height:38px; width:110px; font-weight:bold; line-height:36px; color:#fff; font-size:14px; background:#e9536a; border-radius:3px; text-align:center; text-decoration:none;}
-#result .item a.btn:hover { background:#ef6177;}
+#tip { position: absolute; left: 50%; top: 50%; width: 12.9%; height: 19.7%; margin: -13.05% 0 0 -6.6%; cursor: pointer; transform: rotate(-3deg); }
+#result { display: inline-block; margin: 50px 20px 20px; vertical-align: top; }
+#result .item { border: 1px solid #aaa; border-radius: 4px; padding: 10px 20px; margin-bottom: 20px; min-width: 400px; background: #fff; }
+#result .item p { margin-bottom: 15px; font-size: 16px; line-height: 26px; color: #444; }
+#result .item p:nth-child(2n) { margin-bottom: 5px; }
+#result .item p:last-child { margin-bottom: 0; }
+#result .item p .jz { font-size: 20px; font-weight: bold; color: #000; }
+#result .item p .cz, #result .item p .sq { font-weight: bold; color: #000; }
+#result .item a.btn { display: inline-block; height: 38px; width: 110px; font-weight: bold; line-height: 36px; color: #fff; font-size: 14px; background: #e9536a; border-radius: 3px; text-align: center; text-decoration: none; }
+#result .item a.btn:hover { background: #ef6177; }
+@media screen and (max-width: 767px) {
+#content { display: block; margin: 0 auto; padding: 15px; }
+#result { display: block; margin: 0 auto; padding: 15px; width: 100%; }
+#result .item { min-width: 100%; }
+}
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jQueryRotate.2.1.js"></script>
-<script type="text/javascript">	
-$(function (){
-	
-	var bRotate = false;
-	
-	function refreshResult(JZnum){
-		var newItem = $('<div class="item item-'+ JZnum +'" jz-num="'+ JZnum +'">');		
-		var newItemStr = '<p>您选中的街镇为：<span class="jz">'+ getJZname(JZnum) +'</span></p><p><a class="btn cz" href="javascript:void(0)">点击选村庄</a></p><p>您选择的村庄为：<span class="cz">--</span></p><p><a class="btn sq" href="javascript:void(0)">点击选社区</a></p><p>您选择的社区为：<span class="sq">--</span></p>';
-	    $(newItem).html(newItemStr);
-	    $("#result").append(newItem);
-		
-	}
-	
-	function getJZname(JZnum){
-		var curJZnum = parseInt(JZnum);
-		var JZname;
-		switch (curJZnum) {
-			case 0:
-				JZname = '稠江街道';
-				break;
-			case 1:
-				JZname = '江东街道';
-				break;
-			case 2:
-				JZname = '福田街道';
-				break;
-			case 3:
-				JZname = '稠城街道';
-				break;
-			case 4:
-				JZname = '赤岸镇';
-				break;
-			case 5:
-				JZname = '义亭镇';
-				break;
-			case 6:
-				JZname = '大成镇';
-				break;
-			case 7:
-				JZname = '上溪镇';
-				break;
-			case 8:
-				JZname = '苏溪镇';
-				break;
-			case 9:
-				JZname = '佛堂镇';
-				break;
-			case 10:
-				JZname = '城西街道';
-				break;
-			case 11:
-				JZname = '甘三里街道';
-				break;
-			case 12:
-				JZname = '后宅街道';
-				break;
-			case 13:
-				JZname = '北苑街道';
-				break;
-		}
-		
-		return JZname;
-	}
-	
-	$("body").on("click", "a.btn.cz", function(){
-		var curJZ = $(this).parents('.item').attr('jz-num');
-		console.log(curJZ);
-	});
-	$("body").on("click", "a.btn.sq", function(){
-		var curJZ = $(this).parents('.item').attr('jz-num');
-		console.log(curJZ);
-	});
-	
-
-	var rotateFn = function (JZnum, angles){
-		bRotate = !bRotate;
-		$('#zhuanpan').stopRotate();
-		$('#zhuanpan').rotate({
-			angle:0,
-			animateTo:angles+1800,
-			duration:3000,
-			callback:function (){
-				bRotate = !bRotate;
-				refreshResult(JZnum);
-				console.log(getJZname(JZnum));
-			}
-		})
-	};
-
-	$('.pointer').click(function (){
-		if(bRotate)return;
-		var item = rnd(0,14);
-
-		//[25.7, 51.4, 77.1, 102.8, 128.5, 154.2, 179.9, 205.6, 231.3, 257,   282.7, 308.4, 334.1, 360]
-		//-12.8
-		//[12.8, 38.6, 64.3, 90,    115.7, 141.4, 167.1, 192.8, 218.5, 244.2, 269.9, 295.6, 321.3, 347.2]
-		switch (item) {
-			case 0:
-				rotateFn(0, 347.2);
-				break;
-			case 1:
-				rotateFn(1, 321.3);
-				break;
-			case 2:
-				rotateFn(2, 295.6);
-				break;
-			case 3:
-				rotateFn(3, 269.9);
-				break;
-			case 4:
-				rotateFn(4, 244.2);
-				break;
-			case 5:
-				rotateFn(5, 218.5);
-				break;
-			case 6:
-				rotateFn(6, 192.8);
-				break;
-			case 7:
-				rotateFn(7, 167.1);
-				break;
-			case 8:
-				rotateFn(8, 141.4);
-				break;
-			case 9:
-				rotateFn(9, 115.7);
-				break;
-			case 10:
-				rotateFn(10, 90);
-				break;
-			case 11:
-				rotateFn(11, 64.3);
-				break;
-			case 12:
-				rotateFn(12, 38.6);
-				break;
-			case 13:
-				rotateFn(13, 12.8);
-				break;
-		}
-	});
-});
-function rnd(n, m){
-	return Math.floor(Math.random()*(m-n+1)+n)
-}
-</script>
+<script type="text/javascript" src="js/zhuanpan.js"></script>
 </head>
 <body>
 <div id="mian">
     <div id="content"> <img id="zhuanpan" src="images/zhuanpan.png" alt="转盘"> <img id="tip" class="pointer" src="images/four1.gif" alt="指针"> </div>
-    <div id="result">
-    	<!--
-        <div class="item item-1">
-        	<p>您选中的街镇为：<span class="jz">--</span></p>
-            <p><a onClick="chooseCZ(1)" class="btn cz" href="javascript:void(0)">点击选村庄</a></p>
-            <p>您选择的村庄为：<span class="cz">--</span></p>
-            <p><a onClick="chooseSQ(1)" class="btn sq" href="javascript:void(0)">点击选社区</a></p>
-            <p>您选择的社区为：<span class="sq">--</span></p>
-        </div>
-        -->
-    </div>
+    <div id="result"></div>
 </div>
 </body>
 </html>
