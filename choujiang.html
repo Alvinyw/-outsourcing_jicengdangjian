@@ -7,6 +7,7 @@
 body { font-size: 12px; /*background: #920903;*/ background-color: #ddd; }
 * { margin: 0; padding: 0; }
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+h1 { margin:20px auto;}
 img { border: 0 }
 #content { display: inline-block; width: 100%; max-width: 950px; max-height: 950px; margin: 20px 20px 0; position: relative; overflow: hidden; }
 #zhuanpan { display: block; max-width: 100%; height: auto; }
@@ -21,6 +22,7 @@ img { border: 0 }
 #result .item a.btn { display: inline-block; height: 38px; width: 110px; font-weight: bold; line-height: 36px; color: #fff; font-size: 14px; background: #e9536a; border-radius: 3px; text-align: center; text-decoration: none; }
 #result .item a.btn:hover { background: #ef6177; }
 @media screen and (max-width: 767px) {
+h1 { text-align:center; margin:15px auto 10px;}
 #content { display: block; margin: 0 auto; padding: 15px; }
 #result { display: block; margin: 0 auto; padding: 15px; width: 100%; }
 #result .item { min-width: 100%; }
@@ -28,10 +30,11 @@ img { border: 0 }
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jQueryRotate.2.1.js"></script>
-<script type="text/javascript" src="js/zhuanpan.js"></script>
+<script type="text/javascript" src="js/zhuanpan.min.js"></script>
 </head>
 <body>
 <div id="mian">
+	<h1>"基层党建大转盘" 项目测试版</h1>
     <div id="content"> <img id="zhuanpan" src="images/zhuanpan.png" alt="转盘"> <img id="tip" class="pointer" src="images/four1.gif" alt="指针"> </div>
     <div id="result"></div>
 </div>
