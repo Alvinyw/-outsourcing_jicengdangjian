@@ -1,3 +1,4 @@
 # zhaunpan
+一个外包小项目备份
 
-[转盘/抽奖](https://alvinyw.github.io/Blog/zhuanpan/index.html)
+[Demo](https://alvinyw.github.io/Blog/zhuanpan/index.html)
